@@ -1,10 +1,3 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
 public class Cal {
 	//Bang tan suat cac chu cai trong tieng Anh
 	final static double freq[] = {
@@ -13,36 +6,6 @@ public class Cal {
 		    0.07507, 0.01929, 0.00095, 0.05987, 0.06327, 0.09056, 0.02758,
 		    0.00978, 0.02360, 0.00150, 0.01974, 0.00074
 		};
-	
-	//Sap xep ket qua
-	public static LinkedHashMap<Integer, Double> sortHashMapByValues(Map<Integer, Double> passedMap) {
-	    List<Integer> mapKeys = new ArrayList<>(passedMap.keySet());
-	    List<Double> mapValues = new ArrayList<>(passedMap.values());
-	    Collections.sort(mapValues);
-	    Collections.sort(mapKeys);
-
-	    LinkedHashMap<Integer, Double> sortedMap =
-	        new LinkedHashMap<>();
-
-	    Iterator<Double> valueIt = mapValues.iterator();
-	    while (valueIt.hasNext()) {
-	        Double val = valueIt.next();
-	        Iterator<Integer> keyIt = mapKeys.iterator();
-
-	        while (keyIt.hasNext()) {
-	            Integer key = keyIt.next();
-	            Double comp1 = passedMap.get(key);
-	            Double comp2 = val;
-
-	            if (comp1.equals(comp2)) {
-	                keyIt.remove();
-	                sortedMap.put(key, val);
-	                break;
-	            }
-	        }
-	    }
-	    return sortedMap;
-	}
 	
 	public static int getMinValue(double[] numbers){
 		  double minValue = numbers[0];

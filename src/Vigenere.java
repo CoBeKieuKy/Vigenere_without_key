@@ -13,14 +13,14 @@ public class Vigenere {
 	
 	public static void main(String arg[]) throws IOException {	
 		String input_text ="";
-		double diff = 1000;
 		List<Integer> best_key_length = new ArrayList<Integer>();
 		
 		Path filePath = Paths.get("C:/", "Users/Acer/Desktop/", "encrypted_text.txt");
         try
         {
             String content = Files.readString(filePath);
-            input_text = content.trim().replaceAll("\\s", "");
+            input_text = content.trim().replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+            System.out.println(input_text);
         } 
         catch (IOException e) 
         {
@@ -34,7 +34,7 @@ public class Vigenere {
 		//Tim ra cac key phu hop (best_key_length)
 	    for(int i=0; i<ic_value_out.length; i++) {
 	        double temp_diff = Math.abs(ic_value_out[i]-EXPECTED_FREQ);
-	        if(temp_diff <= EXPECTED_FREQ*0.05) {
+	        if(temp_diff <= EXPECTED_FREQ*0.2) {
 	            best_key_length.add(i+1);
 	        }
 	    }
@@ -45,7 +45,7 @@ public class Vigenere {
 	    for (int i=0; i<best_key_length.size(); i++) {
 	    	String key = Cal.findKey(input_text, best_key_length.get(i), alphabet);
 	    	System.out.println("Key is: "+key);
-	    	
+	    	System.out.println(Cal.decrypt(input_text,key));
 			//Giai ma bang key tim duoc
 	    	PrintWriter writer = new PrintWriter("C:/Users/Acer/Desktop/decrypted_text.txt", "UTF-8");
 	    	writer.println(Cal.decrypt(input_text, key));
